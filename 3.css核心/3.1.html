@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3.1小雨伞</title>
+    <style>
+        .box::before{
+            position: absolute;
+            left:50%;
+            top:-8px;
+            margin-left:-4px;
+            content:"";
+            width:8px;
+            height:8px;
+            border-radius: 50%;
+            background: #000;
+        }
+        .box{
+            position: relative;
+            width:200px;
+            height:100px;
+            margin:50px auto;
+            border-radius:100px 100px 0 0;
+            border:1px solid #000;
+        }
+        .box::after{
+            position: absolute;
+            top:100px;
+            left:50%;
+            content:"";
+            width:40px;
+            height:150px;
+            margin-left:-40px;
+            border-right:1px solid #000;
+            border-bottom: 1px solid #000;
+            border-bottom-left-radius: 100px;
+            border-bottom-right-radius: 100px;
+        }
+        .box div{
+            position: absolute;
+            left:50%;
+            border-radius:50%;
+            border:1px solid #000;
+        }
+        .one{
+            width:100px;
+            height:200px;
+            margin-left:-50px;
+            background:blue;
+        }
+        .two{
+            width:80px;
+            height:200px;
+            margin-left:-40px;
+            background:yellow;
+        }
+        .three{
+            width:40px;
+            height:200px;
+            margin-left:-20px;
+            background: red;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <div class="one"></div>
+            <div class="two"></div>
+            <div class="three"></div>
+        </div>
+    </div>
+</body>
+</html>
