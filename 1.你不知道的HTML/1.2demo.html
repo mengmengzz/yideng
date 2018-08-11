@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.2css远程攻击漏洞</title>
+    <style>
+        .test {
+            background: url('javascript:alert(123)');
+        }
+
+        .test::after {
+            content: url('javascript:alert(123)');
+        }
+
+        .test {
+            color: expressssion(alert("123"))
+        }
+
+        .box {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            margin: 50px auto;
+            border-radius: 50%;
+            background: #f8f8f8;
+            text-align: center;
+            box-shadow: 0 0 0 10px rgba(253, 130, 42, 0.8), 0px 0 0 20px #f5f5f5;
+        }
+
+        .box:before {
+            position: absolute;
+            content: "";
+            display: block;
+            width: 26px;
+            height: 26px;
+            box-shadow: 37px 115px 0 #f5f5f5,
+            37px -41px 0 #f5f5f5,
+            -41px 37px 0 #f5f5f5,
+            115px 37px 0 #f5f5f5;
+            border-radius: 20%;
+            transform-origin: 50px 50px;
+            animation: gun 10s linear infinite;
+        }
+
+        @keyframes gun {
+            from {
+                transform: rotate(0deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="test"></div>
+    <!-- 控制dom数量 -->
+    <div class="box">
+        <span>开课日期</span>
+    </div>
+</body>
+
+</html>

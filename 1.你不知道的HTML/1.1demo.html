@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.1 image测试网速,上报数据</title>
+</head>
+
+<body>
+    <!-- 协商跨域 -->
+    <!-- <img crossorigin="anonymous" src="https://8.url.cn/edu/edu_modules/edu-ui/img/nohash/loading.gif"/> -->
+    <!-- <script crossorigin="anonymous"></script> -->
+    <div id="test">点击</div>
+    <script>
+        // img计算当前网速
+        var start = Date.now();
+        console.log(start)
+        var image = new Image();
+        image.crossOrigin="anonymous";
+        image.src = "https://8.url.cn/edu/edu_modules/edu-ui/img/nohash/loading.gif";//17.6KB
+        image.onload=function(){
+            console.log('加载图片完毕')
+            var end=Date.now();
+            console.log(end);
+            var speed=17.6/(end-start)*1000
+            console.log(speed)
+            // 应用：根据网速加载对应不同图片
+        }
+
+        // img上报数据
+        // https://hm.baidu.com/hm.gif?cc=0&ck=1&cl=24-bit&ds=1440x900&vl=826&ep=%7B%22netAll%22%3A6%2C%22netDns%22%3A0%2C%22netTcp%22%3A0%2C%22srv%22%3A13%2C%22dom%22%3A231%2C%22loadEvent%22%3A2098%7D&et=87&ja=0&ln=zh-cn&lo=0&lt=1533645974&rnd=841395991&si=cb12b7047ac6af334a95f5a10035c618&su=https%3A%2F%2Fwww.yidengxuetang.com%2F&v=1.2.33&lv=2
+        
+        document.getElementById("test").onclick=function(){
+            console.log('点击了发送数据');
+            //发送统计
+            var image =new Image();
+            image.crossOrigin="anonymous";
+            image.src="http://www.yideng.com/ok.gif?x=x&xx=xx";
+            // 应用：统计 埋点
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
