@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.1ES5</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .flex {
+            display: flex;
+        }
+
+        .flex-item {
+            padding:10px;
+            flex: 1;
+            width: 100%;
+        }
+
+        pre {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #eee;
+        }
+    </style>
+</head>
+
+<body>
+    <p>IIFE</p>
+    <p>es9是块级作用域</p>
+    <p>函数作用域</p>
+    with try catch
+    <p>with只对对象上已有的值赋值，没有的值创建全局变量</p>
+    函数  变量，提升，函数提升优先级高
+    var a=1;  a的赋值要保留当前的词法作用域
+    <p></p>
+    <p>this ：谁调用就指谁，当找不到的话，就指向window</p>
+    
+
+    <p>箭头函数的this，会bind this，继承父级</p>
+    <p>es6 是es5的语法糖</p>
+    <p>原型链，闭包，作用域</p>
+
+    
+
+<div class="flex">
+    <div class="flex-item">
+    <pre class="code">
+    <code>
+    function test(){
+        if(false){
+            var a=1;
+        }
+        console.log("inner"+a)
+    }
+    test();
+    console.log(a)
+    </code>
+    </pre>
+    </div>
+    <div class="flex-item">
+    <pre>
+    <code>
+    输出结果：
+    innerundefined
+    a is not defined 
+    </code>
+    </pre>
+    </div>
+</div>
+<div class="flex">
+        <div class="flex-item">
+        <pre class="code">
+        <code>
+        if(true){
+            // let b= 1;
+            try{
+                throw 1;
+            }catch(b){
+                console.log(b)
+            }
+        }
+        console.log(b)
+        </code>
+        </pre>
+        </div>
+        <div class="flex-item">
+    <pre>
+    <code>
+    输出结果：
+    1
+    a is not defined 
+    </code>
+    </pre>
+        </div>
+</div>
+<div class="flex">
+        <div class="flex-item">
+        <pre class="code">
+        <code>
+        // demo3
+        var yideng ={c:1};
+        with(yideng){
+            d=2
+        }
+        console.log(yideng.d)
+        console.log(c)
+        </code>
+        </pre>
+        </div>
+        <div class="flex-item">
+    <pre>
+    <code>
+    输出结果：
+    undefined
+    c is not defined 
+    </code>
+    </pre>
+        </div>
+</div>
+<div class="flex">
+    <div class="flex-item">
+    <pre class="code">
+    <code>
+    // demo4
+    (function(){
+            function d(){}
+            var d=1;
+            //等于以下，经典面试题
+            //var d;
+            //d=1;
+        console.log(d)
+    var e=b=1;
+    
+    // 等于以下
+    // var e=1;
+    // b=1  变成全局了
+    })()
+    console.log(f)
+    console.log(e)
+    </code>
+    </pre>
+    </div>
+        <div class="flex-item">
+    <pre>
+    <code>
+    输出结果：
+    1 
+    1
+    is not undefined
+    </code>
+    </pre>
+        </div>
+    </div>
+<div class="flex">
+    <div class="flex-item">
+    <pre class="code">
+    <code>
+    //demo5
+    function test(){
+        var  g=1;
+        return function(){
+            eval("") //不会回收 因为不确定会不会用到g
+            with()  //不会
+            try(){} //不会
+            catch(){} //不会
+            window.eval("")  //会回收 放到了外面作用域  
+        }
+    }
+    test();
+    </code>
+    </pre>
+    </div>
+    <div class="flex-item">
+    <pre>
+    <code>
+    输出结果：
+    </code>
+    </pre>
+    </div>
+</div>
+<div class="flex">
+        <div class="flex-item">
+        <pre class="code">
+        <code>
+        //demo6 this
+        this.aa=20;
+        var yideng={
+            a:30,
+            init:function(){
+                console.log(this.a) 
+            }
+        }
+        yideng.init() //30
+        var bb =yideng.init;
+        bb();
+        function tests(){
+            this.a=20
+        }
+        tests.prototype.a=30;
+        console.log((new tests()).a)
+        </code>
+        </pre>
+        </div>
+        <div class="flex-item">
+    <pre>
+    <code>
+    输出结果：
+    30
+    20
+    </code>
+    </pre>
+        </div>
+    </div>
+
+<script>
+    // demo1
+    function test() {
+        if (false) {
+            var a = 1;
+        }
+        console.log("inner" + a)
+    }
+    test();
+    console.log(a)
+</script>
+<script>
+    // demo2
+    if(true){
+        // let b= 1;
+        try{
+            throw 1;
+        }catch(b){
+            console.log(b)
+        }
+    }
+    console.log(b)
+</script>
+<script>
+    // demo3
+    var yideng ={c:1};
+    with(yideng){
+        d=2
+    }
+    console.log(yideng.d)
+    console.log(c)
+    
+</script>
+<script>
+        // demo4
+       (function(){
+            function d(){}
+            var d=1;
+            //等于以下，经典面试题
+            //var d;
+            //d=1;
+           console.log(d)
+
+           var e=f=1;
+           
+            // 等于以下
+            // var e=1;
+            // b=1  变成全局了
+       })()
+        
+        console.log(f)
+        console.log(e)
+    </script>
+    <script>
+        //demo5
+        function test(){
+            var  g=1;
+            return function(){
+                eval("") //不能回收 因为不确定会不会用到g
+                // with  //不会
+                // try   //不会
+                // catch //不会
+                window.eval("")  //会回收 放到了外面作用域  
+            }
+        }
+        test();
+        // g会被回收吗？
+    </script>
+    <script>
+        //demo6 this
+        this.aa=20;
+        var yideng={
+            a:30,
+            init:function(){
+                console.log(this.a) 
+            }
+        }
+        yideng.init() //30
+        var bb =yideng.init;
+        bb();
+        function tests(){
+            this.a=20
+        }
+        tests.prototype.a=30;
+       console.log((new tests()).a)
+    </script>
+</body>
+
+</html>

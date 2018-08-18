@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>5.2</title>
+    <style>
+        ul,li{
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        li{
+            padding:5px;
+            margin-top:10px;
+            background:#eee;
+        }
+        pre {
+            /* padding/:5px; */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+        暂时性死区
+        <p>js单线程 同步队列 异步队列</p>
+        <p>onclick  是异步队列</p>
+    <p>请写出如下点击li的值，并用3种办法正确输出li里的数组</p>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+    <pre>
+    <code>
+    var list=document.getElementsByTagName("li");
+    // 方法一 this
+    for(var i=0;i < list.length;i++){
+        list[i].onclick = function(){
+            console.log(i) //每次都是6
+            console.log(this.innerHTML)
+        }
+    }
+    // 方法二闭包
+    // 方法三let
+    </code>
+    </pre>
+    
+    <script>
+        var list=document.getElementsByTagName("li");
+        // 方法一 this
+        for(var i=0;i<list.length;i++){
+            list[i].onclick=function(){
+                // console.log(i)//每次都是6
+                console.log(this.innerHTML)
+            }
+        }
+        // 方法二闭包
+        // 方法三let
+        
+    </script>
+</body>
+</html>
