@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4.1旋转图片</title>
+    <style>
+        .flex{
+            display: flex;
+        }
+        .flex-item{
+            flex:1;
+        }
+        .box{
+            width:150px;
+            height:150px;
+            background:red;
+            overflow: hidden;
+        }
+        .box img{
+            display: block;
+            width: 100%;
+        }
+        .img1{
+            transform:rotate(45deg);            
+        }
+        .img2{
+            transform:rotate(45deg) scale(1.42);            
+        }
+        .img3{
+            clip-path:circle(40%);
+            transition: all 1s;
+        }
+        .img3:hover{
+            clip-path: circle( 100%)
+        }
+    </style>
+</head>
+<body>
+    
+    <p>正方形旋转</p>
+    <div class="flex">
+        <div class="flex-item">
+            <p>变化前：</p>
+            <div class="box">
+                <img src="fang.jpg" class="img1">
+            </div>
+        </div>
+        <div class="flex-item">
+            <p>变化后：缩放</p>
+            <div class="box">
+                <img src="fang.jpg" class="img2">
+            </div>
+        </div>
+    </div>
+    
+    
+    <p>css裁切实现：</p>
+    <div class="box">
+        <img src="fang.jpg" class="img3">        
+    </div>
+
+    <p></p>
+    <img src="4.1.png" alt="" style="width:50%">
+</body>
+</html>

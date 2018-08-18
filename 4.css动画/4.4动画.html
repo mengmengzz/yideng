@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>4.4动画</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.8.1/jquery.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,
+        body {
+            height: 100%;
+
+        }
+        .page {
+            background: #f8f8f8;
+            height: 100%;
+        }
+        .box {
+            position: relative;
+            height: 100%;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
+        }
+        .item {
+            height: 100px;
+            margin: 15px;
+            box-sizing: border-box;
+        }
+        .item div{
+            border-radius: 15px;
+            padding: 10px;
+            background: #fff;
+            height: 80px;
+        }
+        .main {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            transform: scale(2);
+            display: none;
+            opacity: 0;;
+            transition: all 1s;
+        }
+        .main-con {
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 15px;
+            height: 80%;
+            margin: 50px 10px 0;
+            padding: 50px 10px;
+        }
+        @keyframes change {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* 当前的变全屏 */
+        .on{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin:0;
+            z-index:3;
+            transition: all 1s;
+        }
+        .on div{
+            height:70%;
+            margin: 75px 15px 0 15px;
+        }
+        .show{
+            background: #7eebbb;
+        }
+        .show .main {
+            transform: scale(1);
+            opacity: 1;
+            display: block;
+            z-index:4;
+        }
+        /* 上面item向上加速运动 */
+        .up {
+            transition: all 1s cubic-bezier(.24, .47, .66, .88);
+            transform: matrix(1, 0, 0, 1, 0, -700)
+        }
+        /* 下面的item向下加速运动 */
+        .down {
+            transition: all 1s cubic-bezier(.24, .47, .66, .88);
+            transform: matrix(1, 0, 0, 1, 0, 700)
+        }
+        /* 小汽车从右向左缓慢开入 */
+        .car {
+            position: absolute;
+            right: 40%;
+            top: 10px;
+            animation: democar 2s cubic-bezier(.12, .6, .84, .86);
+        }
+        @keyframes democar {
+            0% {
+                transform: matrix(1, 0, 0, 1, 100, 0);
+                opacity: 0;
+            }
+            100% {
+                transform: matrix(0);
+                opacity: 1
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="box">
+            <div>苏宁易购停车场</div>
+            <div class="item"><div>京A9904B</div></div>
+            <div class="item"><div>京Q9N93A</div></div>
+            <div class="item"><div>京U046A1</div></div>
+            <div class="item"><div>京077177</div></div>
+            <div class="item"><div>京A0000N</div></div>
+            <div class="main">
+                <div class="car">
+                    <img src="car.png" alt="" width="100px">
+                </div>
+            </div>
+        </div>
+    </div>
+        <script>
+            $(function () {
+                $(".item").click(function () {
+                    $('.box').addClass('show')//变背景颜色
+                    var currentindex = $(this).index()
+                    $(".item").each(function (index, element) {
+                        if (currentindex > (index + 1)) {
+                            // 当前元素上面的div向上加速运动
+                            $(element).addClass('up')
+                        } else if (currentindex < index + 1) {
+                            // 当前元素下面的div向下加速运动
+                            $(element).addClass('down')
+                        }else{
+                            // 当前元素变全屏
+                            $(element).addClass('on')//当前变大
+                        }
+                    });
+                })
+            }) 
+        </script>
+</body>
+
+</html>
