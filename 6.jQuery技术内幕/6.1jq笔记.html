@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>6.1笔记</title>
+    <style>
+         pre {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<pre>
+    <code>
+    移动开发 
+    11年后zepto
+    比较适合运营业
+
+    闭包
+    undefinded =4
+    alert(undefinded) //undefinded
+                      //早期有的浏览器就等于4
+    
+    原理  c 汇编 v8 node webkit
+    dart webbase wasm帮js性能提升
+
+    var jQuery = (function (window, undefined) {
+        var jQuery = function () {
+            return new jQuery.fn.init();//jQuery
+        }
+        jQuery.fn = jQuery.prototype = {
+            init: function () {
+            },
+            extend:function(){
+                // this 
+            }
+        };
+
+        jQuery.fn.init.prototype = jQuery.fn;
+        return jQuery;
+    })(window);
+    jQuery.fn.extend //直接对原型连进行操作
+    jQuery.extend //直接添加静态方法
+    jQuery.extend.version = 1;
+    $.version = 1;
+    // $.ss        
+    jQuery("#test").tips({
+        text:"xxx"
+    })
+    重写 重载 test(1)
+    
+    js没有多态
+    <code>
+</pre>
+<pre>
+    <code>
+    <h2>2:js函数的重载</h2>
+    arguments 是实参  fn是形参
+    
+    2.1链式调用
+        >>> 位运算
+        向后补0位，不补位，加快运算，二进制计算，
+        arraybuffer
+
+    2.2短路语句
+        var a=""
+        if(a == true){
+
+        }
+        if(a){
+            test()
+        }
+        a && test()a true 后面才执行，得到后面返回值
+        a || test() 
+
+        a false 后面不执行
+
+    2.3sizzle
+        最快的选择器，选择器dom的 引擎，内核
+
+    2.4钩子：用来解决一种或多种情况的处理
+        字典
+        映射
+        表驱动
+
+        var s="index";
+        switch(s){
+            case "index"
+            break;
+            
+        }
+        var s="p";
+        var obj={
+            index:function(){}
+            p:function(){}
+        }
+        obj[s] && obj[s]();
+
+
+        $.type=
+        (function(window,undefined){
+            var class2type={};
+            jQuery.each("Boolean Number")
+        })(window)
+
+    2.5连贯接口
+        1.链式调用
+        2.命令查询媒体 重载
+        3.参数映射
+    </code>
+</pre>
+<pre>
+    <code>
+    <h2>3:ready</h2>
+    ready 比onload早
+    document.addEventListener("DOMContentloaded");
+    $.ready(function () {
+
+    });
+
+    ie6解决办法 
+    (function(){
+    function IEContentLoaded(){
+        (function(){
+            try{
+                document.documentElement.doScoll("left")
+            }catch(e){
+                setTimeout(arguments.callee,50);
+            }
+        });
+    }
+</code>
+</pre>
+</body>
+</html>
